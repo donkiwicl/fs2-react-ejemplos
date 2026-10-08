@@ -3,7 +3,7 @@ import { useLocalStorage } from '../hooks/useLocalStorage.js'
 
 // Caso real: un arreglo de objetos. useLocalStorage lo convierte a JSON automáticamente.
 export default function ListaTareas() {
-  const [tareas, setTareas] = useLocalStorage('ejemplo:tareas', [])
+  const [tareas, setTareas] = useLocalStorage('ej1:tareas', [])
   const [texto, setTexto] = useState('') // estado temporal: NO hace falta guardarlo
 
   function agregar(event) {

@@ -26,7 +26,7 @@ test('la sesión sigue activa al recargar y se cierra con logout', async ({ page
   await expect(page.getByText('Hola, Usuario Kiwi')).toBeVisible()
 
   // La sesión guardada nunca incluye la contraseña.
-  const sesion = await page.evaluate(() => localStorage.getItem('ejemplo:sesion'))
+  const sesion = await page.evaluate(() => localStorage.getItem('ej2:sesion'))
   expect(sesion).not.toContain('password')
 
   await page.getByRole('button', { name: 'Cerrar sesión' }).click()

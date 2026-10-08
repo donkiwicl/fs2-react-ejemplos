@@ -1,11 +1,19 @@
-# Integración continua: en cada push o pull request se corren las pruebas de los tres ejemplos.
-name: Pruebas
+# CI/CD: en cada push o pull request se corren las pruebas de los tres ejemplos.
+# En main, si todas pasan, se compilan y se publican juntos en GitHub Pages:
+#   https://donkiwicl.github.io/fs2-react-ejemplos/              → portada (pages/index.html)
+#   https://donkiwicl.github.io/fs2-react-ejemplos/01-localstorage/ … y así cada ejemplo
+name: Pruebas y GitHub Pages
 
 on:
   push:
     branches: [main]
   pull_request:
   workflow_dispatch: # permite ejecutarlo a mano desde la pestaña "Actions"
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
 
 jobs:
   pruebas:
@@ -39,3 +47,38 @@ jobs:
           name: playwright-report-${{ matrix.ejemplo }}
           path: ${{ matrix.ejemplo }}/playwright-report/
           retention-days: 30
+
+  build-pages:
+    if: github.ref == 'refs/heads/main'
+    needs: pruebas
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v7
+      - uses: actions/setup-node@v7
+        with:
+          node-version: 22
+      - name: Compilar los ejemplos y armar el sitio
+        run: |
+          mkdir -p _site
+          cp pages/index.html _site/
+          for ejemplo in 01-localstorage 02-usuario 03-spa; do
+            (cd "$ejemplo" && npm ci && npm run build)
+            cp -r "$ejemplo/dist" "_site/$ejemplo"
+          done
+      - uses: actions/upload-pages-artifact@v5
+        with:
+          path: _site
+
+  deploy:
+    needs: build-pages
+    runs-on: ubuntu-latest
+    concurrency:
+      group: pages
+      cancel-in-progress: true
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - name: Publicar en GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v5

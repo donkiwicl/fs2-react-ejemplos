@@ -33,8 +33,8 @@ describe('Manejo de usuario', () => {
     await iniciarSesion(user, 'user@kiwi.cl', 'user123')
     expect(await screen.findByRole('heading', { name: 'Mi perfil' })).toBeInTheDocument()
     expect(screen.getByText('Hola,')).toBeInTheDocument()
-    expect(JSON.parse(localStorage.getItem('ejemplo:sesion')).email).toBe('user@kiwi.cl')
-    expect(localStorage.getItem('ejemplo:sesion')).not.toContain('password')
+    expect(JSON.parse(localStorage.getItem('ej2:sesion')).email).toBe('user@kiwi.cl')
+    expect(localStorage.getItem('ej2:sesion')).not.toContain('password')
   })
 
   it('muestra error con credenciales inválidas', async () => {
@@ -57,7 +57,7 @@ describe('Manejo de usuario', () => {
     await user.click(screen.getByRole('button', { name: 'Cerrar sesión' }))
     expect(await screen.findByRole('heading', { name: 'Ejemplo 2 · Manejo de usuario' })).toBeInTheDocument()
     expect(screen.getByRole('link', { name: 'Iniciar sesión' })).toBeInTheDocument()
-    expect(localStorage.getItem('ejemplo:sesion')).toBeNull()
+    expect(localStorage.getItem('ej2:sesion')).toBeNull()
   })
 
   it('solo el admin entra al panel de administración', async () => {

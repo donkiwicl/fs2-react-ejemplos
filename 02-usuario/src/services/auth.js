@@ -5,7 +5,7 @@
  * ⚠️ Solo para aprender: aquí los usuarios y contraseñas quedan en localStorage en texto
  * plano. NUNCA hagas esto en producción: la contraseña se valida en el servidor.
  */
-const CLAVE_USUARIOS = 'ejemplo:usuarios'
+const CLAVE_USUARIOS = 'ej2:usuarios'
 
 const USUARIOS_INICIALES = [
   { id: 1, nombre: 'Admin Kiwi', email: 'admin@kiwi.cl', password: 'admin123', rol: 'admin' },

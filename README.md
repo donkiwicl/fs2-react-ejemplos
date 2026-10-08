@@ -4,6 +4,8 @@ Tres ejemplos **autoconclusivos**: cada carpeta es un proyecto Vite + React inde
 con su propio `package.json`, sus pruebas (Vitest + Playwright) y su README. Puedes copiar una
 carpeta sola y funciona.
 
+🌐 **Verlos en línea: https://donkiwicl.github.io/fs2-react-ejemplos/**
+
 | Carpeta | Tema | Conceptos |
 | --- | --- | --- |
 | [`01-localstorage`](./01-localstorage) | Persistir datos en el navegador | `localStorage`, JSON, hook `useLocalStorage`, evento `storage` |
@@ -43,5 +45,12 @@ npm run dev                       # abre http://localhost:5173
 Playwright compila la app y levanta `vite preview` solo (cada ejemplo usa su propio puerto:
 4173, 4174 y 4175). En GitHub Actions ([`pruebas.yml`](./.github/workflows/pruebas.yml)) se
 corren ambos niveles para los tres ejemplos y el informe de Playwright queda como artefacto.
+
+## Publicación en GitHub Pages
+
+En cada push a `main`, si todas las pruebas pasan, el mismo workflow compila los tres ejemplos y
+los publica juntos: la portada es [`pages/index.html`](./pages/index.html) y cada ejemplo queda en
+su subcarpeta (`/01-localstorage/`, `/02-usuario/`, `/03-spa/`). Funciona sin configuración extra
+porque `vite.config.js` usa `base: './'` (rutas relativas) y las apps con rutas usan `HashRouter`.
 
 **Stack:** Vite 8 · React 19 · React Router 8 · Vitest · Testing Library · Playwright

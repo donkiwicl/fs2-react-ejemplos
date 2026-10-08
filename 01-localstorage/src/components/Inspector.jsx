@@ -26,7 +26,7 @@ function leerTodo() {
   const datos = {}
   for (let i = 0; i < localStorage.length; i++) {
     const key = localStorage.key(i)
-    if (key.startsWith('ejemplo:')) datos[key] = localStorage.getItem(key) // texto crudo
+    if (key.startsWith('ej1:')) datos[key] = localStorage.getItem(key) // texto crudo
   }
   return datos
 }

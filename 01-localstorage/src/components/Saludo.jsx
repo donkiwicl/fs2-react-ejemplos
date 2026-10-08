@@ -1,8 +1,8 @@
 import { useLocalStorage } from '../hooks/useLocalStorage.js'
 
-// Caso más simple: un string guardado bajo la clave "ejemplo:nombre".
+// Caso más simple: un string guardado bajo la clave "ej1:nombre".
 export default function Saludo() {
-  const [nombre, setNombre] = useLocalStorage('ejemplo:nombre', '')
+  const [nombre, setNombre] = useLocalStorage('ej1:nombre', '')
 
   return (
     <section className="card">

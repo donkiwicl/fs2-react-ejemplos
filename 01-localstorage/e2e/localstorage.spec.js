@@ -10,7 +10,7 @@ test('el nombre sobrevive a una recarga real de la página', async ({ page }) =>
 
   await page.reload()
   await expect(page.getByPlaceholder('Escribe tu nombre')).toHaveValue('Kiwi')
-  expect(await page.evaluate(() => localStorage.getItem('ejemplo:nombre'))).toBe('"Kiwi"')
+  expect(await page.evaluate(() => localStorage.getItem('ej1:nombre'))).toBe('"Kiwi"')
 })
 
 test('las tareas se guardan como JSON y persisten', async ({ page }) => {
@@ -26,7 +26,7 @@ test('las tareas se guardan como JSON y persisten', async ({ page }) => {
   await expect(page.getByLabel('Completar Estudiar React')).toBeChecked()
   await expect(page.getByText('Hacer la tarea', { exact: true })).toBeVisible()
 
-  const guardadas = await page.evaluate(() => JSON.parse(localStorage.getItem('ejemplo:tareas')))
+  const guardadas = await page.evaluate(() => JSON.parse(localStorage.getItem('ej1:tareas')))
   expect(guardadas.map((t) => t.titulo)).toEqual(['Estudiar React', 'Hacer la tarea'])
 })
 

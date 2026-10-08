@@ -41,7 +41,7 @@ const tareas = JSON.parse(localStorage.getItem('tareas')) ?? []
 ## El hook
 
 ```jsx
-const [tareas, setTareas] = useLocalStorage('ejemplo:tareas', [])
+const [tareas, setTareas] = useLocalStorage('ej1:tareas', [])
 ```
 
 1. **Lee** el valor una sola vez al montar (`useState(() => ...)`, inicialización *lazy*).
@@ -51,7 +51,9 @@ const [tareas, setTareas] = useLocalStorage('ejemplo:tareas', [])
 
 ## Buenas prácticas
 
-- Usa un **prefijo** en las claves (`ejemplo:`) para no chocar con otras apps del mismo dominio.
+- Usa un **prefijo** en las claves (`ej1:`) para no chocar con otras apps del mismo dominio.
+  En GitHub Pages los tres ejemplos comparten origen (`donkiwicl.github.io`) y, por lo tanto,
+  el mismo localStorage: por eso este usa `ej1:` y el de usuario `ej2:`.
 - Límite aproximado: **5 MB** por sitio. No sirve para archivos grandes.
 - Es **síncrono**: no guardes datos enormes en cada tecla.
 - **No es seguro**: cualquier script de la página puede leerlo. Nunca guardes contraseñas

@@ -8,7 +8,7 @@ import * as authApi from '../services/auth.js'
  * La sesión se guarda en localStorage para que siga activa al recargar la página.
  */
 const AuthContext = createContext(null)
-const CLAVE_SESION = 'ejemplo:sesion'
+const CLAVE_SESION = 'ej2:sesion'
 
 function leerSesion() {
   try {

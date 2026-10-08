@@ -3,7 +3,7 @@ import { useLocalStorage } from '../hooks/useLocalStorage.js'
 
 // Preferencia de interfaz: el tema elegido se recuerda entre visitas.
 export default function SelectorTema() {
-  const [tema, setTema] = useLocalStorage('ejemplo:tema', 'sistema')
+  const [tema, setTema] = useLocalStorage('ej1:tema', 'sistema')
 
   // Aplicamos el tema al <html> (el CSS usa :root[data-theme="..."]).
   useEffect(() => {
