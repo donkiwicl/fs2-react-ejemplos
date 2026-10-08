@@ -5,7 +5,15 @@ Registro, inicio y cierre de sesión, perfil editable, rutas protegidas y roles.
 ```bash
 npm install
 npm run dev
+
+# Pruebas
+npm run test:run                  # Vitest (componentes, jsdom)
+npx playwright install chromium   # solo la primera vez
+npm run test:e2e                  # Playwright (navegador real)
 ```
+
+Las pruebas E2E (`e2e/usuario.spec.js`) recorren los flujos completos en un navegador real: ruta
+protegida → login → regreso, sesión que sobrevive a F5, logout, roles y registro.
 
 Cuentas de prueba:
 
@@ -25,6 +33,7 @@ main.jsx
             ├─ /              público
             ├─ /login         público
             ├─ /registro      público
+            ├─ /logout        cierra sesión y vuelve a /
             ├─ RequireAuth    ← components/RequireAuth.jsx
             │  └─ /perfil     requiere sesión
             └─ RequireAuth rol="admin"
@@ -39,6 +48,7 @@ main.jsx
 | `src/pages/Login.jsx` / `Registro.jsx` | Formularios controlados, errores y estado "enviando" |
 | `src/pages/Perfil.jsx` | Página protegida que edita datos del usuario |
 | `src/pages/Admin.jsx` | Página solo para el rol admin |
+| `src/pages/Logout.jsx` | Ruta `/logout`: cierra la sesión después de salir de la página protegida |
 
 ## Conceptos clave
 

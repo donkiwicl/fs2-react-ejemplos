@@ -5,7 +5,15 @@ Guarda datos en el navegador para que sobrevivan a recargas y cierres de pestañ
 ```bash
 npm install
 npm run dev
+
+# Pruebas
+npm run test:run                  # Vitest (componentes, jsdom)
+npx playwright install chromium   # solo la primera vez
+npm run test:e2e                  # Playwright (navegador real)
 ```
+
+Las pruebas E2E (`e2e/localstorage.spec.js`) recargan la página de verdad, abren dos pestañas para
+probar la sincronización con el evento `storage` y leen el `localStorage` real del navegador.
 
 ## Qué incluye
 

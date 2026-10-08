@@ -6,6 +6,7 @@ import Login from './pages/Login.jsx'
 import Registro from './pages/Registro.jsx'
 import Perfil from './pages/Perfil.jsx'
 import Admin from './pages/Admin.jsx'
+import Logout from './pages/Logout.jsx'
 import NotFound from './pages/NotFound.jsx'
 
 export default function App() {
@@ -16,6 +17,7 @@ export default function App() {
         <Route index element={<Inicio />} />
         <Route path="login" element={<Login />} />
         <Route path="registro" element={<Registro />} />
+        <Route path="logout" element={<Logout />} />
 
         {/* Rutas que exigen sesión iniciada */}
         <Route element={<RequireAuth />}>

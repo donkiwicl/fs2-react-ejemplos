@@ -1,0 +1,41 @@
+# Integración continua: en cada push o pull request se corren las pruebas de los tres ejemplos.
+name: Pruebas
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+  workflow_dispatch: # permite ejecutarlo a mano desde la pestaña "Actions"
+
+jobs:
+  pruebas:
+    name: ${{ matrix.ejemplo }}
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        ejemplo: [01-localstorage, 02-usuario, 03-spa]
+    defaults:
+      run:
+        working-directory: ${{ matrix.ejemplo }}
+    steps:
+      - uses: actions/checkout@v5
+      - uses: actions/setup-node@v5
+        with:
+          node-version: 22
+          cache: npm
+          cache-dependency-path: ${{ matrix.ejemplo }}/package-lock.json
+      - run: npm ci
+      - name: Pruebas unitarias y de componentes (Vitest)
+        run: npm run test:run
+      - name: Instalar navegador de Playwright
+        run: npx playwright install --with-deps chromium
+      - name: Pruebas end-to-end (Playwright)
+        run: npm run test:e2e
+      # Evidencia: informe HTML con capturas (y videos de las pruebas que fallen), 30 días.
+      - uses: actions/upload-artifact@v5
+        if: ${{ !cancelled() }}
+        with:
+          name: playwright-report-${{ matrix.ejemplo }}
+          path: ${{ matrix.ejemplo }}/playwright-report/
+          retention-days: 30

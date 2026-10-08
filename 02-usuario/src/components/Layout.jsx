@@ -3,13 +3,8 @@ import { useAuth } from '../context/AuthContext.jsx'
 
 // La barra cambia según haya o no un usuario logueado (y según su rol).
 export default function Layout() {
-  const { usuario, esAdmin, logout } = useAuth()
+  const { usuario, esAdmin } = useAuth()
   const navigate = useNavigate()
-
-  function cerrarSesion() {
-    logout()
-    navigate('/')
-  }
 
   return (
     <>
@@ -25,7 +20,7 @@ export default function Layout() {
           {usuario ? (
             <div className="row">
               <span>Hola, <strong>{usuario.nombre}</strong></span>
-              <button className="btn" onClick={cerrarSesion}>Cerrar sesión</button>
+              <button className="btn" onClick={() => navigate('/logout')}>Cerrar sesión</button>
             </div>
           ) : (
             <div className="row">

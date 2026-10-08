@@ -55,6 +55,7 @@ describe('Manejo de usuario', () => {
     expect(screen.getByRole('heading', { name: 'Mi perfil' })).toBeInTheDocument()
 
     await user.click(screen.getByRole('button', { name: 'Cerrar sesión' }))
+    expect(await screen.findByRole('heading', { name: 'Ejemplo 2 · Manejo de usuario' })).toBeInTheDocument()
     expect(screen.getByRole('link', { name: 'Iniciar sesión' })).toBeInTheDocument()
     expect(localStorage.getItem('ejemplo:sesion')).toBeNull()
   })

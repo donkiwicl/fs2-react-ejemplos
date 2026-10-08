@@ -6,7 +6,16 @@ recargar la página. React Router sincroniza la URL con el componente que se mue
 ```bash
 npm install
 npm run dev
+
+# Pruebas
+npm run test:run                  # Vitest (componentes, jsdom)
+npx playwright install chromium   # solo la primera vez
+npm run test:e2e                  # Playwright (navegador real)
 ```
+
+Las pruebas E2E (`e2e/spa.spec.js`) comprueban lo que define a una SPA en un navegador real: que al
+navegar se descarga **un solo documento HTML**, que funcionan Atrás y los enlaces directos, y que
+la página diferida se descarga recién al visitarla.
 
 ## Paso a paso: crear esta SPA desde cero
 

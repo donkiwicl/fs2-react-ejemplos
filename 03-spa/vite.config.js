@@ -11,6 +11,7 @@ export default defineConfig({
     environment: 'jsdom',
     globals: true,
     setupFiles: './src/setupTests.js',
+    include: ['src/**/*.test.{js,jsx}'], // e2e/ es de Playwright
     css: false,
   },
 })

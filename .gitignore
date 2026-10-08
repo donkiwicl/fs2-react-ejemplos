@@ -3,3 +3,9 @@ dist
 coverage
 *.local
 .DS_Store
+
+# Playwright (reportes y evidencias generadas)
+test-results
+playwright-report
+blob-report
+playwright/.cache
