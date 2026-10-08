@@ -19,8 +19,8 @@ jobs:
       run:
         working-directory: ${{ matrix.ejemplo }}
     steps:
-      - uses: actions/checkout@v5
-      - uses: actions/setup-node@v5
+      - uses: actions/checkout@v7
+      - uses: actions/setup-node@v7
         with:
           node-version: 22
           cache: npm
@@ -33,7 +33,7 @@ jobs:
       - name: Pruebas end-to-end (Playwright)
         run: npm run test:e2e
       # Evidencia: informe HTML con capturas (y videos de las pruebas que fallen), 30 días.
-      - uses: actions/upload-artifact@v5
+      - uses: actions/upload-artifact@v7
         if: ${{ !cancelled() }}
         with:
           name: playwright-report-${{ matrix.ejemplo }}
